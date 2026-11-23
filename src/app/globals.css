@@ -19,3 +19,12 @@
 .order-card span,.order-card p,.admin-card p,.admin-card small{color:#777;font-size:12px}.order-expanded{align-items:flex-start}.order-expanded small{display:block;margin-top:7px;color:#777}
 .admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}.admin-stats>div{background:#fff;border:1px solid #e9e8e3;padding:20px;display:flex;flex-direction:column;gap:7px}.admin-stats b{font-size:30px}.admin-stats span{font-size:12px;color:#777}.admin-card>div{flex:1;min-width:0}.admin-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.admin-actions .primary-btn{padding:11px 15px}.secondary-btn{padding:10px 14px;background:#fff;border:1px solid #ddd;cursor:pointer;font-size:12px}
 @media(max-width:700px){.product-detail-page{grid-template-columns:1fr;margin:28px auto;gap:25px}.product-detail-image{height:300px}.auth-card{padding:26px 22px}.account-content{margin:30px auto}.order-card,.admin-card{align-items:flex-start;flex-direction:column}.admin-stats{grid-template-columns:1fr}.admin-actions{width:100%}}
+
+/* Temu-inspired horizontal category explorer */
+.category-explorer{display:flex;align-items:center;gap:10px;width:100%;min-width:0}
+.category-explorer .category-pills{display:flex;align-items:center;gap:10px;flex:1;min-width:0;overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;scrollbar-width:none;scroll-behavior:smooth;padding:3px 1px 8px}
+.category-explorer .category-pills::-webkit-scrollbar{display:none}
+.category-explorer .pill{flex:0 0 auto;min-height:48px;padding:10px 19px;border:1px solid #d8d8d8;border-radius:28px;background:#fff;color:#343434;font-size:12px;line-height:1.25;white-space:nowrap}
+.category-explorer .pill.active{border:2px solid #252522;background:#fff;color:#252522;font-weight:700;padding:9px 18px}
+.category-arrow{flex:0 0 38px;width:38px;height:38px;border:1px solid #eee;border-radius:50%;background:#fff;color:#333;font-size:25px;line-height:1;cursor:pointer;box-shadow:0 2px 8px #00000010}
+@media(max-width:700px){.category-explorer{gap:5px}.category-explorer .category-pills{gap:7px}.category-explorer .pill{min-height:42px;padding:8px 14px}.category-arrow{width:30px;height:30px;flex-basis:30px;font-size:21px}}
