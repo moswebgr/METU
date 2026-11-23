@@ -16,8 +16,14 @@
 @media(max-width:600px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 7px}.category-name{font-size:12px}.category-image{width:clamp(82px,23vw,118px);height:clamp(82px,23vw,118px)}}
 @media(max-width:390px){.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* METU image logo and rounded navigation header */
+.logo{display:flex;align-items:center;flex:0 0 auto;letter-spacing:0;font-size:0}
+.logo img{display:block;width:48px;height:48px;object-fit:contain;border-radius:12px}
+header.nav{border-radius:20px;margin-top:10px;padding:12px 20px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 22px #14201c0a}
+@media(max-width:520px){.logo img{width:42px;height:42px}header.nav{border-radius:16px;padding:10px 13px;margin-top:7px}}
 </style></head><body><div class="top">ΑΝΑΚΑΛΥΨΕ ΤΟ ΕΠΟΜΕΝΟ ΑΓΑΠΗΜΕΝΟ ΣΟΥ BRAND · METU MARKETPLACE</div>
-<header class="wrap nav"><a class="logo" href="#/">METU<span>.</span></a><nav class="navlinks" id="navlinks"><a href="#/shop">Ανακάλυψε</a><a href="#/categories">Κατηγορίες</a><a href="#/sell">Γίνε πωλητής</a><a href="#/about">Η METU</a></nav><div class="actions"><button class="pill mobile" id="menuBtn">☰</button><a class="pill" href="#/wishlist">♡ <span id="wishCount">0</span></a><a class="pill" href="#/cart">Καλάθι <b id="cartCount">0</b></a><a class="btn" id="accountLink" href="#/account">Σύνδεση</a></div></header>
+<header class="wrap nav"><a class="logo" href="#/" aria-label="METU αρχική"><img src="metu.png" alt="METU logo"></a><nav class="navlinks" id="navlinks"><a href="#/shop">Ανακάλυψε</a><a href="#/categories">Κατηγορίες</a><a href="#/sell">Γίνε πωλητής</a><a href="#/about">Η METU</a></nav><div class="actions"><button class="pill mobile" id="menuBtn">☰</button><a class="pill" href="#/wishlist">♡ <span id="wishCount">0</span></a><a class="pill" href="#/cart">Καλάθι <b id="cartCount">0</b></a><a class="btn" id="accountLink" href="#/account">Σύνδεση</a></div></header>
 <main class="wrap" id="app"></main><footer class="wrap footer"><span>© 2026 METU Marketplace</span><span><a href="#/about">Σχετικά</a> · <a href="#/contact">Επικοινωνία</a> · <a href="#/faq">Βοήθεια</a> · <a href="#/terms">Όροι χρήσης</a> · <a href="#/privacy">Απόρρητο</a></span><span>Made for discovering good things.</span></footer><div id="toast" class="toast hidden"></div>
 <script>
 const products=[];
