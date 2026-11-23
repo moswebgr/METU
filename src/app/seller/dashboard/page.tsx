@@ -1,0 +1,7 @@
+import Link from "next/link";
+import {getServerSession} from "next-auth";
+import {redirect} from "next/navigation";
+import {authOptions} from "@/lib/auth";
+import {prisma} from "@/lib/prisma";
+export const dynamic="force-dynamic";
+export default async function SellerDashboard(){const s=await getServerSession(authOptions);if(!s?.user?.id)redirect("/login");if(!["SELLER","ADMIN"].includes(s.user.role))redirect("/sell");const store=await prisma.store.findUnique({where:{ownerId:s.user.id},include:{products:{orderBy:{createdAt:"desc"}}}});if(!store)return <main className="account-page"><Link href="/">METU</Link><h1>Δεν υπάρχει κατάστημα</h1><p>Επικοινώνησε με την υποστήριξη.</p></main>;return <main className="account-page"><header className="header"><Link className="logo" href="/">metu<span>.</span></Link><Link href="/account">Ο λογαριασμός μου</Link></header><section className="account-content"><div className="eyebrow">SELLER STUDIO</div><h1>{store.name}</h1><p>Διαχείριση καταστήματος και προϊόντων. Τα νέα προϊόντα ξεκινούν ως πρόχειρα μέχρι να εγκριθούν.</p><h2>Τα προϊόντα μου</h2>{store.products.map(p=><article className="order-card" key={p.id}><b>{p.name}</b><span>{p.status}</span><span>Απόθεμα: {p.inventory}</span><strong>€{Number(p.price).toFixed(2)}</strong></article>)}<p><Link href="/seller/dashboard/new" className="primary-btn">Προσθήκη προϊόντος</Link></p></section></main>}
