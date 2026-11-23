@@ -1,0 +1,3 @@
+import Link from "next/link";
+export const metadata={title:"Σχετικά με τη METU"};
+export default function About(){return <main className="account-page"><header className="header"><Link className="logo" href="/">metu<span>.</span></Link><Link href="/">Marketplace</Link></header><section className="account-content"><div className="eyebrow">OUR STORY</div><h1>Ένα marketplace για καλές ανακαλύψεις.</h1><p>Η METU δημιουργήθηκε για να φέρνει κοντά ανεξάρτητα brands, δημιουργούς και ανθρώπους που αναζητούν ξεχωριστά προϊόντα.</p><p>Στόχος μας είναι μια απλή, προσεγμένη εμπειρία ανακάλυψης και αγορών.</p><Link className="primary-btn" href="/sell">Γίνε συνεργάτης</Link></section></main>}
