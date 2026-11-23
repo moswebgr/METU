@@ -24,6 +24,9 @@ const itemSchema = z.object({
 function listFrom(value: any): any[] {
   if (Array.isArray(value)) return value;
   if (value && typeof value === "object") {
+    if (value.rss?.channel?.item) return listFrom(value.rss.channel.item);
+    if (value.channel?.item) return listFrom(value.channel.item);
+    if (value.catalog?.product) return listFrom(value.catalog.product);
     if (value.products) return listFrom(value.products.product ?? value.products);
     if (value.product) return listFrom(value.product);
     if (value.item) return listFrom(value.item);
@@ -53,16 +56,16 @@ export async function POST(request: Request) {
       return undefined;
     };
     return itemSchema.safeParse({
-      name: value("name", "title", "product_name"),
-      description: value("description", "desc") ?? "Προϊόν από το αρχείο καταστήματος.",
-      price: value("price"),
+      name: value("name", "title", "product_name", "g:title"),
+      description: value("description", "desc", "g:description") ?? "Προϊόν από το αρχείο καταστήματος.",
+      price: String(value("price", "g:price") ?? "").replace(/[^0-9.,]/g, "").replace(",", "."),
       inventory: value("inventory", "stock", "quantity") ?? 0,
-      storeUrl: value("storeUrl", "url", "link", "product_url"),
-      imageUrl: value("imageUrl", "image", "image_link") ?? "",
+      storeUrl: value("storeUrl", "url", "link", "product_url", "g:link"),
+      imageUrl: value("imageUrl", "image", "image_link", "g:image_link") ?? "",
       sku: value("sku", "id"),
-      ean: value("ean", "gtin", "barcode"),
-      mpn: value("mpn", "manufacturer_part_number"),
-      availability: value("availability", "stock_status") ?? "Άμεσα διαθέσιμο",
+      ean: value("ean", "gtin", "barcode", "g:gtin"),
+      mpn: value("mpn", "manufacturer_part_number", "g:mpn"),
+      availability: value("availability", "stock_status", "g:availability") ?? "Άμεσα διαθέσιμο",
       shipping: value("shipping", "shipping_cost") ?? 0,
       categoryName: value("category", "categoryName")
     });
@@ -72,15 +75,13 @@ export async function POST(request: Request) {
   const rows = valid.map(v => (v as { success: true; data: z.infer<typeof itemSchema> }).data);
   const categories = await prisma.category.findMany();
   const categoryMap = new Map(categories.map(c => [c.name.toLowerCase(), c.id]));
-  const created = await prisma.$transaction(rows.map((p, index) => {
-    const slug = slugify(p.name) + "-" + Math.random().toString(36).slice(2, 8) + "-" + index;
-    return prisma.product.create({ data: {
-      name: p.name, description: p.description, price: p.price, inventory: p.inventory,
-      storeUrl: p.storeUrl, imageUrl: p.imageUrl || null, sku: p.sku || null, ean: p.ean || null,
-      mpn: p.mpn || null, availability: p.availability, shipping: p.shipping,
-      categoryId: p.categoryName ? categoryMap.get(p.categoryName.toLowerCase()) ?? null : null,
-      slug, storeId: store.id, status: "DRAFT"
-    }});
-  }));
-  return NextResponse.json({ imported: created.length, status: "DRAFT", message: "Τα προϊόντα εισήχθησαν ως πρόχειρα και περιμένουν έγκριση." }, { status: 201 });
+  const created = await prisma.product.createMany({ data: rows.map((p, index) => ({
+    name: p.name, description: p.description, price: p.price, inventory: p.inventory,
+    storeUrl: p.storeUrl, imageUrl: p.imageUrl || null, sku: p.sku || null, ean: p.ean || null,
+    mpn: p.mpn || null, availability: p.availability, shipping: p.shipping,
+    categoryId: p.categoryName ? categoryMap.get(p.categoryName.toLowerCase()) ?? null : null,
+    slug: slugify(p.name) + "-" + Math.random().toString(36).slice(2, 8) + "-" + index,
+    storeId: store.id, status: "DRAFT" as const
+  })) });
+  return NextResponse.json({ imported: created.count, status: "DRAFT", message: "Τα προϊόντα εισήχθησαν ως πρόχειρα και περιμένουν έγκριση." }, { status: 201 });
 }
