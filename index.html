@@ -51,7 +51,7 @@ header.nav{border-radius:20px;margin-top:10px;padding:12px 20px;background:#fff;
 </div><div class="footer-bottom"><span>© 2026 METU Marketplace</span><div><a href="#/terms">Όροι χρήσης</a><a href="#/privacy">Πολιτική απορρήτου</a><a href="#/contact">Επικοινωνία</a></div><span>LESS ORDINARY. MORE YOU.</span></div></div></footer><div id="toast" class="toast hidden"></div>
 <script>
 const products=[];
-const cats=["Προσωπική Φροντίδα & Ομορφιά","Γυναικεία Ένδυση","Σπίτι & Κουζίνα","Ανδρική Ένδυση","Γυναικεία Παπούτσια","Ανδρικά Εσώρουχα & Ρούχα Ύπνου","Αθλητισμός & Υπαίθριες Δραστηριότητες","Είδη Γραφείου & Σχολείου","Παιχνίδια & Games","Κοσμήματα & Αξεσουάρ","Ηλεκτρονικά","Κινητά & Αξεσουάρ","Αυτοκίνητο & Μοτοσικλέτα","Βρεφικά & Παιδικά","Κατοικίδια","Εργαλεία & Βελτίωση Σπιτιού","Αποθήκευση & Οργάνωση","Παπούτσια & Τσάντες","Τρόφιμα & Ποτά","Χαρτικά & Είδη Χειροτεχνίας"];
+const cats=["Προσωπική Φροντίδα & Ομορφιά","Γυναικεία Ένδυση","Σπίτι & Κουζίνα","Ανδρική Ένδυση","Γυναικεία Παπούτσια","Ανδρικά Εσώρουχα & Ρούχα Ύπνου","Αθλητισμός & Υπαίθριες Δραστηριότητες","Είδη Γραφείου & Σχολείου","Παιχνίδια & Games","Κοσμήματα & Αξεσουάρ","Ηλεκτρονικά","Κινητά & Αξεσουάρ","Αυτοκίνητο & Μοτοσικλέτα","Βρεφικά & Παιδικά","Κατοικίδια","Εργαλεία & Βελτίωση Σπιτιού","Αποθήκευση & Οργάνωση","Παπούτσια & Τσάντες","Τρόφιμα & Ποτά","Χαρτικά & Είδη Χειροτεχνίας","Smart LED Καθρέπτες"];
 const categoryImages={
 "Προσωπική Φροντίδα & Ομορφιά":"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=500&q=85",
 "Γυναικεία Ένδυση":"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=500&q=85",
@@ -72,7 +72,8 @@ const categoryImages={
 "Αποθήκευση & Οργάνωση":"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=85",
 "Παπούτσια & Τσάντες":"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=85",
 "Τρόφιμα & Ποτά":"https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=85",
-"Χαρτικά & Είδη Χειροτεχνίας":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=500&q=85"
+"Χαρτικά & Είδη Χειροτεχνίας":"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=500&q=85",
+"Smart LED Καθρέπτες":"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=500&q=85"
 };
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem("metu_"+k))??d}catch{return d}},save=(k,v)=>localStorage.setItem("metu_"+k,JSON.stringify(v));
 let cart=read("cart",{}),wishlist=read("wishlist",[]),user=read("user",null),orders=read("orders",[]),sellerApps=read("sellerApps",[]),sellerProducts=read("sellerProducts",[]),filter="Όλα",search="",sort="Προτεινόμενα";
