@@ -1,0 +1,3 @@
+import Link from "next/link";
+export const metadata={title:"Επικοινωνία"};
+export default function Contact(){return <main className="account-page"><header className="header"><Link className="logo" href="/">metu<span>.</span></Link><Link href="/">Marketplace</Link></header><section className="account-content"><div className="eyebrow">GET IN TOUCH</div><h1>Επικοινωνία</h1><p>Για θέματα παραγγελιών, συνεργασίες πωλητών ή τεχνική υποστήριξη, χρησιμοποίησε τα στοιχεία επικοινωνίας που θα οριστούν από τη METU πριν από την εμπορική έναρξη.</p><p>Οι διευθύνσεις υποστήριξης και οι χρόνοι εξυπηρέτησης πρέπει να συμπληρωθούν πριν από τη δημοσίευση.</p><Link href="/sell">Ενδιαφέρεσαι να γίνεις πωλητής;</Link></section></main>}
