@@ -54,6 +54,12 @@ model Product {
   compareAtPrice Decimal? @db.Decimal(10,2)
   inventory Int @default(0)
   imageUrl String?
+  storeUrl String?
+  sku String?
+  ean String?
+  mpn String?
+  availability String @default("Άμεσα διαθέσιμο")
+  shipping Decimal @default(0) @db.Decimal(10,2)
   status ProductStatus @default(DRAFT)
   featured Boolean @default(false)
   createdAt DateTime @default(now())
