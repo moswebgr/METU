@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function Cancel(){return <main className="auth-page"><div className="auth-card"><h1>Η πληρωμή ακυρώθηκε</h1><p>Δεν έγινε χρέωση. Μπορείς να επιστρέψεις στο καλάθι και να προσπαθήσεις ξανά.</p><Link className="primary-btn" href="/">Επιστροφή στο marketplace</Link></div></main>}
