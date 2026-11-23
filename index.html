@@ -22,9 +22,30 @@
 .logo img{display:block;width:56px;height:56px;object-fit:contain;border-radius:12px}
 header.nav{border-radius:20px;margin-top:10px;padding:12px 20px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 22px #14201c0a}
 @media(max-width:520px){.logo img{width:48px;height:48px}header.nav{border-radius:16px;padding:10px 13px;margin-top:7px}}
+
+/* Dark multi-column marketplace footer */
+.site-footer{background:#222;color:#fff;margin-top:55px;padding:42px 25px 24px}
+.footer-inner{max-width:1350px;margin:0 auto}
+.footer-columns{display:grid;grid-template-columns:1.05fr 1.05fr .8fr 1.15fr;gap:48px;padding:0 0 42px}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:15px}
+.footer-column h3{font-size:14px;font-weight:800;margin:0 0 7px;color:#fff}
+.footer-column>a{font-size:13px;color:#b9bfbb;transition:color .2s}
+.footer-column>a:hover,.footer-bottom a:hover{color:#b8ef6b}
+.footer-cta p{font-size:13px;line-height:1.7;color:#b9bfbb;margin:0 0 4px;max-width:280px}
+.footer-column .footer-join{display:inline-flex;padding:11px 17px;border-radius:24px;background:#b8ef6b;color:#14201c;font-weight:800}
+.footer-bottom{border-top:1px solid #444;padding-top:23px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;color:#aeb5b0;font-size:12px}
+.footer-bottom div{display:flex;gap:24px;flex-wrap:wrap}
+.footer-bottom a{color:#b9bfbb}
+@media(max-width:800px){.footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:35px 28px}}
+@media(max-width:480px){.site-footer{padding:34px 18px 22px}.footer-columns{grid-template-columns:1fr 1fr;gap:30px 18px}.footer-column h3{font-size:13px}.footer-column>a,.footer-cta p{font-size:12px}.footer-bottom{align-items:flex-start;flex-direction:column;gap:14px}.footer-bottom div{gap:15px}}
 </style></head><body><div class="top">ΑΝΑΚΑΛΥΨΕ ΤΟ ΕΠΟΜΕΝΟ ΑΓΑΠΗΜΕΝΟ ΣΟΥ BRAND · METU MARKETPLACE</div>
 <header class="wrap nav"><a class="logo" href="#/" aria-label="METU αρχική"><img src="metu.png" alt="METU logo"></a><nav class="navlinks" id="navlinks"><a href="#/shop">Ανακάλυψε</a><a href="#/categories">Κατηγορίες</a><a href="#/sell">Γίνε πωλητής</a><a href="#/about">Η METU</a></nav><div class="actions"><button class="pill mobile" id="menuBtn">☰</button><a class="pill" href="#/wishlist">♡ <span id="wishCount">0</span></a><a class="pill" href="#/cart">Καλάθι <b id="cartCount">0</b></a><a class="btn" id="accountLink" href="#/account">Σύνδεση</a></div></header>
-<main class="wrap" id="app"></main><footer class="wrap footer"><span>© 2026 METU Marketplace</span><span><a href="#/about">Σχετικά</a> · <a href="#/contact">Επικοινωνία</a> · <a href="#/faq">Βοήθεια</a> · <a href="#/terms">Όροι χρήσης</a> · <a href="#/privacy">Απόρρητο</a></span><span>Made for discovering good things.</span></footer><div id="toast" class="toast hidden"></div>
+<main class="wrap" id="app"></main><footer class="site-footer"><div class="footer-inner"><div class="footer-columns">
+<section class="footer-column"><h3>Γνώρισε τη METU</h3><a href="#/about">Σχετικά με εμάς</a><a href="#/contact">Επικοινωνία</a><a href="#/categories">Κατηγορίες</a></section>
+<section class="footer-column"><h3>Εξυπηρέτηση πελατών</h3><a href="#/faq">Συχνές ερωτήσεις</a><a href="#/terms">Όροι χρήσης</a><a href="#/privacy">Πολιτική απορρήτου</a></section>
+<section class="footer-column"><h3>Βοήθεια</h3><a href="#/contact">Κέντρο υποστήριξης</a><a href="#/orders">Οι παραγγελίες μου</a><a href="#/cart">Το καλάθι μου</a></section>
+<section class="footer-column footer-cta"><h3>Γίνε μέρος της METU</h3><p>Ανακάλυψε ανεξάρτητα brands ή έλα στην ομάδα των συνεργατών μας.</p><a class="footer-join" href="#/sell">Γίνε συνεργάτης ↗</a></section>
+</div><div class="footer-bottom"><span>© 2026 METU Marketplace</span><div><a href="#/terms">Όροι χρήσης</a><a href="#/privacy">Πολιτική απορρήτου</a><a href="#/contact">Επικοινωνία</a></div><span>LESS ORDINARY. MORE YOU.</span></div></div></footer><div id="toast" class="toast hidden"></div>
 <script>
 const products=[];
 const cats=["Προσωπική Φροντίδα & Ομορφιά","Γυναικεία Ένδυση","Σπίτι & Κουζίνα","Ανδρική Ένδυση","Γυναικεία Παπούτσια","Ανδρικά Εσώρουχα & Ρούχα Ύπνου","Αθλητισμός & Υπαίθριες Δραστηριότητες","Είδη Γραφείου & Σχολείου","Παιχνίδια & Games","Κοσμήματα & Αξεσουάρ","Ηλεκτρονικά","Κινητά & Αξεσουάρ","Αυτοκίνητο & Μοτοσικλέτα","Βρεφικά & Παιδικά","Κατοικίδια","Εργαλεία & Βελτίωση Σπιτιού","Αποθήκευση & Οργάνωση","Παπούτσια & Τσάντες","Τρόφιμα & Ποτά","Χαρτικά & Είδη Χειροτεχνίας"];
