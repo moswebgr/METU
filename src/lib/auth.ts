@@ -1,5 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from "next-auth/providers/apple";
 import { compare } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
@@ -7,6 +9,8 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt", maxAge: 60 * 60 * 24 * 14 },
   pages: { signIn: "/login" },
   providers: [
+    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET ? [GoogleProvider({ clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET })] : []),
+    ...(process.env.APPLE_CLIENT_ID && process.env.APPLE_CLIENT_SECRET ? [AppleProvider({ clientId: process.env.APPLE_CLIENT_ID, clientSecret: process.env.APPLE_CLIENT_SECRET })] : []),
     CredentialsProvider({
       name: "Email and password",
       credentials: {
