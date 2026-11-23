@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function Success(){return <main className="auth-page"><div className="auth-card"><div className="eyebrow">PAYMENT RECEIVED</div><h1>Ευχαριστούμε για την παραγγελία!</h1><p>Η πληρωμή ολοκληρώθηκε. Η παραγγελία σου θα εμφανιστεί στο ιστορικό σου μόλις επιβεβαιωθεί από το σύστημα.</p><Link className="primary-btn" href="/account">Ο λογαριασμός μου</Link></div></main>}
