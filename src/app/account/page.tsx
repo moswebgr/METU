@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+export const dynamic="force-dynamic";
+export default async function Account(){const session=await getServerSession(authOptions);if(!session?.user?.id)redirect("/login");const orders=await prisma.order.findMany({where:{userId:session.user.id},include:{items:true},orderBy:{createdAt:"desc"},take:20});return <main className="account-page"><header className="header"><Link className="logo" href="/">metu<span>.</span></Link><Link href="/">Marketplace</Link></header><section className="account-content"><div className="eyebrow">YOUR METU ACCOUNT</div><h1>Καλώς ήρθες, {session.user.name}</h1><p>{session.user.email} · {session.user.role}</p><div className="account-links"><Link href="/orders">Οι παραγγελίες μου</Link>{session.user.role==="SELLER"&&<Link href="/seller/dashboard">Seller Studio</Link>}{session.user.role==="ADMIN"&&<Link href="/admin">Admin Dashboard</Link>}<Link href="/sell">Γίνε πωλητής</Link></div><h2>Πρόσφατες παραγγελίες</h2>{orders.length?orders.map(o=><article className="order-card" key={o.id}><b>#{o.id.slice(-8).toUpperCase()}</b><span>{o.createdAt.toLocaleDateString("el-GR")}</span><span>{o.status}</span><strong>€{Number(o.total).toFixed(2)}</strong></article>):<p>Δεν υπάρχουν παραγγελίες ακόμη.</p>}</section></main>}
