@@ -5,10 +5,10 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-enum UserRole { CUSTOMER SELLER ADMIN }
-enum ProductStatus { DRAFT ACTIVE ARCHIVED }
-enum OrderStatus { PENDING PAID PROCESSING SHIPPED DELIVERED CANCELLED REFUNDED }
-enum ApplicationStatus { PENDING APPROVED REJECTED }
+enum UserRole {\n  CUSTOMER\n  SELLER\n  ADMIN\n}
+enum ProductStatus {\n  DRAFT\n  ACTIVE\n  ARCHIVED\n}
+enum OrderStatus {\n  PENDING\n  PAID\n  PROCESSING\n  SHIPPED\n  DELIVERED\n  CANCELLED\n  REFUNDED\n}
+enum ApplicationStatus {\n  PENDING\n  APPROVED\n  REJECTED\n}
 model User {
   id String @id @default(cuid())
   name String
