@@ -13,7 +13,7 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
   if (body.status === "APPROVED") {
     const storeName = application.brandName;
     await prisma.$transaction([
-      prisma.store.upsert({ where: { ownerId: application.userId }, update: { name: storeName, description: application.description }, create: { ownerId: application.userId, name: storeName, slug: slugify(storeName) + "-" + application.id.slice(-5), description: application.description } }),
+      prisma.store.upsert({ where: { ownerId: application.userId }, update: { name: storeName, description: application.description, isVerified: true }, create: { ownerId: application.userId, name: storeName, slug: slugify(storeName) + "-" + application.id.slice(-5), description: application.description, isVerified: true } }),
       prisma.user.update({ where: { id: application.userId }, data: { role: "SELLER" } })
     ]);
   }
