@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://moswebgr.github.io/METU";
+const canonicalUrl = process.env.NEXT_PUBLIC_SITE_URL;
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  ...(canonicalUrl ? { metadataBase: new URL(canonicalUrl) } : {}),
   title: { default: "METU — Ανακάλυψε κάτι ξεχωριστό", template: "%s | METU Marketplace" },
   description: "Ένα marketplace για ανεξάρτητα brands, δημιουργούς και ξεχωριστά προϊόντα.",
   openGraph: { title: "METU Marketplace", description: "Ανεξάρτητα brands. Ξεχωριστές ανακαλύψεις.", type: "website" },
