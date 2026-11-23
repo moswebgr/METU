@@ -16,7 +16,7 @@ A responsive multi-vendor marketplace starter built with Next.js App Router, Rea
 4. Run `npx prisma generate` and `npx prisma db push`.
 5. Run `npm run dev` and open http://localhost:3000.
 
-## Deploy to Vercel (recommended)
+## GitHub Pages demo (static storefront)\nThe static demo lives in `docs/` and can be published separately from the full Next.js app. In GitHub, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/docs`, then save. The expected URL is `https://moswebgr.github.io/METU/` once GitHub finishes publishing. This demo uses sample products and browser-only cart state; it does not include accounts, database access, order processing or payments.\n\n## Deploy to Vercel (recommended)
 This is a Next.js application. **Do not deploy it with GitHub Pages**: GitHub Pages only hosts static files and cannot run the Next.js server features or Prisma-backed APIs required by a full marketplace.
 
 1. Push the project to GitHub (the `main` branch is the production branch).
